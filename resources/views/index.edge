@@ -7,13 +7,15 @@ JobPostr - Post your Jobs
 @section('content')
   <h1>All Profiles</h1>
 
+  @each(profile in profiles)
   <div class="profile-container">
     <div class="blank"></div>
     <div class="profile info-info">
-      <h3>User name</h3>
-      <p>email adress</p>
-      <p>city state zip</p>
-      <p>bio</p>
+      <h3>{{ profile.user_name }}</h3>
+      <p>{{ profile.email }}</p>
+      <p>{{ profile.location }}</p>
+      <p>{{ profile.bio }}</p>
     </div>
   </div>
+  @endeach
 @endsection
