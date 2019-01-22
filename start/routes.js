@@ -28,3 +28,10 @@ Route.get('/logout', async ({ auth, response }) => {
   await auth.logout();
   return response.redirect('/');
 });
+
+Route.get('/post-a-profile', 'ProfileController.userIndex');
+
+Route.get('/post-a-profile/delete/:id', 'ProfileController.delete');
+Route.get('/post-a-profile/edit/:id', 'ProfileController.edit');
+Route.post('/post-a-profile/update/:id', 'ProfileController.update').validator('CreateProfile');
+Route.post('/post-a-profile', 'ProfileController.create').validator('CreateProfile');

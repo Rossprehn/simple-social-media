@@ -1,0 +1,75 @@
+@layout('layouts.main')
+
+@section('user_name')
+Social Media  - Post your Profile
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  <h1>Post your profile</h1>
+
+
+  <div class="profile-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('ProfileController.create') }}" method="POST">
+          {{ csrfField() }}
+  
+          <label for="user_name">Name</label>
+          <input type="text" name="user_name" value="{{ old('user_name', '') }}">
+          @if(hasErrorFor('user_name'))
+              <span>
+                  {{ getErrorFor('user_name') }}
+              </span>
+          @endif
+  
+          <label for="Email">Email</label>
+          <input type="text" name="Email" value="{{ old('Email', '') }}">
+          @if(hasErrorFor('Email'))
+              <span>
+                  {{ getErrorFor('Email') }}
+              </span>
+          @endif
+  
+          <label for="location">Location</label>
+          <input type="text" name="location">
+          @if(hasErrorFor('location'))
+              <span>
+                  {{ getErrorFor('location') }}
+              </span>
+          @endif
+  
+          <label for="bio">bio</label>
+          <input type="text" name="bio">
+          @if(hasErrorFor('bio'))
+              <span>
+                  {{ getErrorFor('bio') }}
+              </span>
+          @endif
+
+          <button type="submit">Submit your profile</button>
+        </form>
+    </div>
+
+<h2>My Profile</h2>
+
+  @each(profile in profiles)
+  <div class="profile-container2">
+    <div class="blank"></div>
+    <div class="profile-info">
+      <h3>{{ profile.user_name }}</h3>
+      <p>{{ profile.email }}</p>
+      <p>{{ profile.location }}</p>
+      <p>{{ profile.bio }}</p>
+      <ul>
+          <li><a href="{{ route('ProfileController.delete', { id: profile.id }) }}">Delete</a></li>
+          <li><a href="{{ route('ProfileController.edit', { id: profile.id }) }}">Edit</a></li>
+      </ul>
+    </div>
+  </div>
+  @endeach
+@endsection
