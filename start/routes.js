@@ -30,8 +30,13 @@ Route.get('/logout', async ({ auth, response }) => {
 });
 
 Route.get('/post-a-profile', 'ProfileController.userIndex');
-
-Route.get('/post-a-profile/delete/:id', 'ProfileController.delete');
-Route.get('/post-a-profile/edit/:id', 'ProfileController.edit');
-Route.post('/post-a-profile/update/:id', 'ProfileController.update').validator('CreateProfile');
 Route.post('/post-a-profile', 'ProfileController.create').validator('CreateProfile');
+
+
+Route.group(() => {
+  Route.get('', 'JobController.userIndex');
+  Route.post('', 'JobController.create').validator('CreateJob');
+  Route.get('/delete/:id', 'JobController.delete');
+  Route.get('/edit/:id', 'JobController.edit');
+  Route.post('/update/:id', 'JobController.update').validator('CreateJob');
+  }).prefix('/post-a-profile')

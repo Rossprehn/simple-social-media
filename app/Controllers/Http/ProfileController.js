@@ -18,7 +18,7 @@ class ProfileController {
 
         return view.render('profiles', { profiles: profiles.toJSON() })
     }
-
+ 
     async create({ request, response, session, auth}) {
         const profile = request.all();
 

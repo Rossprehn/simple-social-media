@@ -1,0 +1,57 @@
+@layout('layouts.main')
+
+@section('title')
+Social Media - Edit your profile
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  <h1>Edit Profile</h1>
+
+
+  <div class="Profile-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('ProfileController.update', { id: profile.id }) }}" method="POST">
+          {{ csrfField() }}
+  
+          <label for="user_name">User Name</label>
+          <input type="text" name="user_name" value="{{ profile.user_name }}">
+          @if(hasErrorFor('user_name'))
+              <span>
+                  {{ getErrorFor('user_name') }}
+              </span>
+          @endif
+  
+          <label for="email">Email</label>
+          <input type="text" name="email" value="{{ profile.email }}">
+          @if(hasErrorFor('email'))
+              <span>
+                  {{ getErrorFor('email') }}
+              </span>
+          @endif
+  
+          <label for="location">Location</label>
+          <input type="text" name="location" value="{{ profile.location }}">
+          @if(hasErrorFor('location'))
+              <span>
+                  {{ getErrorFor('location') }}
+              </span>
+          @endif
+
+          <label for="bio">About you</label>
+          <input type="text" name="bio" value="{{ profile.bio }}">
+          @if(hasErrorFor('bio'))
+              <span>
+                  {{ getErrorFor('bio') }}
+              </span>
+          @endif
+  
+          <button type="submit">Update profile </button><br>
+        </form>
+    </div>
+@endsection
