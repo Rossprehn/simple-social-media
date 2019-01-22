@@ -18,15 +18,14 @@ class ProfileController {
 
         return view.render('profiles', { profiles: profiles.toJSON() })
     }
- 
+
     async create({ request, response, session, auth}) {
         const profile = request.all();
 
         const posted = await auth.user.profiles().create({
-            user_name: profile.title,
-            email: profile.email,
-            location: profile.location,
-            bio: profile.bio
+            title: profile.title,
+            link: profile.link,
+            description: profile.description
         });
 
         session.flash({ message: 'Your profile has been posted!' });

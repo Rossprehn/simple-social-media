@@ -1,6 +1,4 @@
-'use strict'
-
-class CreateProfile {
+class CreateJob {
   get rules () {
     return {
       user_name: 'required',
@@ -9,9 +7,9 @@ class CreateProfile {
       bio: 'required'
     }
   }
-   get messages() {
+  get messages() {
     return {
-      'required': '{{ field }} is required.'
+      'required': 'Hold up, the {{ field }} is required.'
     }
   }
 

@@ -22,7 +22,7 @@ class User extends Model {
   }
 
   profiles() {
-    return this.hasMany('app/Models/Profile')
+    return this.hasOne('app/Models/Profile')
   }
 
   /**
