@@ -8,7 +8,7 @@ class ProfileController {
         
         const profiles = await Profile.all();
 
-        return view.render('index', { profiles:profiles.toJSON() })
+        return view.render('index', { profiles: profiles.toJSON() })
     }
 }
 
